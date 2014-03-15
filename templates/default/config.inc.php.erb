@@ -1,0 +1,26 @@
+<?php
+
+<%
+   i = 0
+   @config['servers'].each do |server|
+     i += 1
+%>
+$cfg['Servers'][<%= i %>]['verbose'] = '';
+$cfg['Servers'][<%= i %>]['host'] = '<%= server.has_key?('host') ? server['host'] : '127.0.0.1' %>';
+$cfg['Servers'][<%= i %>]['port'] = '<%= server.has_key?('port') ? server['port'] : '' %>';
+$cfg['Servers'][<%= i %>]['socket'] = '<%= server.has_key?('socket') ? server['socket'] : '' %>';
+$cfg['Servers'][<%= i %>]['connect_type'] = '<%= server.has_key?('connect_type') ? server['connect_type'] : 'tcp' %>';
+$cfg['Servers'][<%= i %>]['extension'] = '<%= server.has_key?('extension') ? server['extension'] : 'mysql' %>';
+$cfg['Servers'][<%= i %>]['auth_type'] = '<%= server.has_key?('auth_type') ? server['auth_type'] : 'config' %>';
+$cfg['Servers'][<%= i %>]['user'] = '<%= server.has_key?('user') ? server['user'] : 'root' %>';
+$cfg['Servers'][<%= i %>]['password'] = '<%= server.has_key?('password') ? server['password'] : '' %>';
+<%
+   end
+%>
+
+$cfg['blowfish_secret'] = '<%= @config['blowfish_secret'] %>';
+$cfg['DefaultLang'] = '<%= @config['DefaultLang'] %>';
+$cfg['ServerDefault'] = <%= @config['ServerDefault'] %>;
+$cfg['UploadDir'] = '<%= @config['UploadDir'] %>';
+$cfg['SaveDir'] = '<%= @config['SaveDir'] %>';
+?>
